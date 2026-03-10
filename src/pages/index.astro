@@ -1,50 +1,720 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// src/pages/index.astro
+// Fire Spark Analytics — Homepage
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Spark Analytics — Customized Analytics for Busy E-preneurs</title>
+  <meta name="description" content="Customized analytics for busy e-preneurs. Delegate the analytics to Charles Ashton and refocus on what you enjoy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Tokens ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:  #F97316;
+      --gold:    #FAAC18;
+      --charcoal:#1C1C1E;
+      --ink:     #2D2D2D;
+      --slate:   #5A5A6A;
+      --cloud:   #F5F5F0;
+      --white:   #FFFFFF;
+      --nav-h:   72px;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: var(--nav-h);
+      background: var(--charcoal);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span.fire  { color: var(--orange); }
+    .nav-logo span.spark { color: var(--gold); }
+    .nav-logo span.rest  { color: var(--white); }
+
+    .nav-contact {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 0.45rem 1.25rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-contact:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      background: var(--charcoal);
+      padding: 0 5vw 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 480px;
+    }
+
+    .hero-text { color: var(--white); }
+
+    .hero-tagline-bar {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1.75rem;
+      border-radius: 2px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.15;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 42ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero-body p + p { margin-top: 0.85rem; }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.75rem 2rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
+
+    /* chart stand-in — styled to evoke a analytics dashboard */
+    .hero-visual {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      color: var(--white);
+    }
+    .hero-visual h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.9);
+    }
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .donut {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: conic-gradient(
+        #3B82F6   0%   52%,
+        #F97316  52%   72%,
+        #9CA3AF  72%   81%,
+        #FAAC18  81%  100%
+      );
+      position: relative;
+    }
+    .donut::after {
+      content: 'yoursite.com';
+      position: absolute;
+      inset: 25%;
+      background: var(--charcoal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+    }
+    .legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .legend li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); }
+    .swatch {
+      width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+    }
+    .s-referral { background: #3B82F6; }
+    .s-organic  { background: #F97316; }
+    .s-cpc      { background: #9CA3AF; }
+    .s-email    { background: #FAAC18; }
+
+    /* ── Section utility ─────────────────────────────── */
+    section { padding: 5rem 5vw; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Why section ─────────────────────────────────── */
+    .why {
+      background: var(--cloud);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .why-body { font-size: 1.05rem; color: var(--slate); line-height: 1.75; }
+    .why-body p + p { margin-top: 1rem; }
+
+    .why-highlight {
+      background: var(--white);
+      border-left: 3px solid var(--orange);
+      padding: 1.5rem 1.75rem;
+      border-radius: 0 6px 6px 0;
+    }
+    .why-highlight p {
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .why-highlight strong { font-weight: 500; color: var(--charcoal); }
+
+    /* ── Services callout ────────────────────────────── */
+    .services {
+      background: var(--charcoal);
+      color: var(--white);
+      text-align: center;
+    }
+    .services .section-title { color: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 1.5rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: rgba(249,115,22,0.15); }
+    .service-card .icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .service-card h4 { font-weight: 500; font-size: 1rem; margin-bottom: 0.4rem; color: var(--white); }
+    .service-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+    /* ── About ───────────────────────────────────────── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-bio { font-size: 1.05rem; color: var(--slate); line-height: 1.75; }
+    .about-bio p + p { margin-top: 1rem; }
+
+    .about-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .skill-tag {
+      background: var(--cloud);
+      border: 1px solid #e0e0d8;
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .about-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      margin-top: 1.5rem;
+    }
+    .about-name span { color: var(--slate); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; }
+
+    /* ── Contact Form ────────────────────────────────── */
+    .contact-box {
+      background: var(--cloud);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .contact-box .contact-intro {
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-box .contact-intro strong { color: var(--charcoal); font-weight: 500; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid #d8d8d0;
+      border-radius: 4px;
+      padding: 0.6rem 0.85rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.75rem;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+    .btn-primary:hover    { background: #e56500; transform: translateY(-1px); }
+    .btn-primary:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+
+    .form-status {
+      font-size: 0.9rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: 4px;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+    }
+    .form-status.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    /* ── Platforms ───────────────────────────────────── */
+    .platforms {
+      background: var(--cloud);
+      text-align: center;
+    }
+    .platform-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem 2.5rem;
+    }
+    .platform-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      border: 1px solid #e4e4dc;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.15s;
+      min-width: 110px;
+    }
+    .platform-logo:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .platform-logo img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+    .platform-logo.wide img { height: 28px; width: 180px; }
+    .platform-logo span {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem 5vw;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--orange); }
+
+    /* ── Animations ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text > * {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.55s; }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero, .why, .about {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero { padding-bottom: 3rem; }
+      nav { padding: 0 1.25rem; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="nav-logo">
+      <span class="fire">fire</span> <span class="spark">spark</span> <span class="rest">analytics</span>
+    </div>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-text">
+      <div class="hero-tagline-bar">Customized analytics for busy e-preneurs</div>
+      <h1 class="hero-headline">
+        Delegate the analytics.<br>
+        Refocus on what<br>
+        <em>you enjoy.</em>
+      </h1>
+      <div class="hero-body">
+        <p>You've already got a full plate as an e-preneur. I'll empower you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
+        <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering — I've got you covered.</p>
+      </div>
+      <a href="#contact" class="hero-cta">Get a free consultation →</a>
+    </div>
+
+    <div class="hero-visual" aria-label="Sample traffic sources chart">
+      <h3>Traffic Sources</h3>
+      <div class="donut-wrap">
+        <div class="donut" role="img" aria-label="Pie chart showing traffic sources"></div>
+        <ul class="legend">
+          <li><span class="swatch s-referral"></span> Referral &nbsp;8.2%</li>
+          <li><span class="swatch s-organic"></span>  Organic &nbsp;3.2%</li>
+          <li><span class="swatch s-cpc"></span>      CPC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4%</li>
+          <li><span class="swatch s-email"></span>    E-mail &nbsp;&nbsp;1.2%</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Section ── -->
+  <section class="why" id="why" aria-labelledby="why-heading">
+    <div>
+      <span class="section-label">The problem</span>
+      <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
+      <div class="why-body">
+        <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't organized around what's important to you.</p>
+        <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, and listening to your specific questions and goals.</p>
+      </div>
+    </div>
+    <div>
+      <div class="why-highlight">
+        <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
+        <br>
+        <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ── -->
+  <section class="services" id="services" aria-labelledby="services-heading">
+    <span class="section-label">What I cover</span>
+    <h2 class="section-title" id="services-heading">Analytics for every stage of your business</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon">📊</div>
+        <h4>User Engagement</h4>
+        <p>Understand how visitors interact with your content and where they drop off.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🎯</div>
+        <h4>Conversion Rates</h4>
+        <p>Track and optimize the paths that turn browsers into buyers.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">📈</div>
+        <h4>Campaign ROI</h4>
+        <p>Know exactly which campaigns are earning their keep — and which aren't.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🔍</div>
+        <h4>Segmentation & Clustering</h4>
+        <p>Advanced analysis to identify your highest-value customer groups.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🏷️</div>
+        <h4>UTM & Tag Setup</h4>
+        <p>Proper tracking foundations: UTM tags, Google Tag Manager, and more.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🔀</div>
+        <h4>Funnel & Attribution</h4>
+        <p>Attribution model selection and full funnel analysis to see the whole picture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="about" id="about" aria-labelledby="about-heading">
+    <div>
+      <span class="section-label">About me</span>
+      <h2 class="section-title" id="about-heading">A scientist's approach to your business data</h2>
+      <div class="about-bio">
+        <p>A former research scientist, I have extensive experience in advanced data analysis. I also have ample experience explaining complicated information to students and other non-experts — if you're not a numbers or analytics person, I've got you.</p>
+      </div>
+      <div class="about-skills">
+        <span class="skill-tag">Statistical Analysis</span>
+        <span class="skill-tag">Clustering</span>
+        <span class="skill-tag">Regression</span>
+        <span class="skill-tag">Classification</span>
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">SEO Analytics</span>
+      </div>
+      <p class="about-name">Charles Ashton <span>M.S.</span></p>
+    </div>
+    <div class="contact-box" id="contact">
+      <p class="contact-intro">
+        <strong>Ready to get impactful insights that will help you optimize your decision making?</strong>
+        Get in touch. We'll start with a free consultation to identify your specific analytics needs —
+        then I'll outline a package, timeline, and quote tailored to you.
+      </p>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="business">Your website / business</label>
+          <input type="text" id="business" name="business" placeholder="mystore.com" />
+        </div>
+        <div class="form-group">
+          <label for="interest">Primary interest</label>
+          <select id="interest" name="interest">
+            <option value="">— Select one —</option>
+            <option>User engagement analysis</option>
+            <option>Conversion rate optimisation</option>
+            <option>Campaign ROI / Google Ads</option>
+            <option>SEO analytics</option>
+            <option>Customer segmentation</option>
+            <option>UTM &amp; Tag Manager setup</option>
+            <option>Funnel &amp; attribution analysis</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything else you'd like to share?</label>
+          <textarea id="message" name="message" placeholder="Tell me a bit about your business and what questions you're trying to answer…"></textarea>
+        </div>
+        <div class="form-status" id="formStatus"></div>
+        <button type="submit" class="btn-primary" id="submitBtn">Send message →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Platforms ── -->
+  <section class="platforms" aria-labelledby="platforms-heading">
+    <span class="section-label">Tools & Platforms</span>
+    <h2 class="section-title" id="platforms-heading">Some of the platforms and services I work with</h2>
+    <div class="platform-logos">
+      <div class="platform-logo">
+        <img src="/logos/google-analytics.svg" alt="Google Analytics" width="36" height="36" />
+        <span>Google Analytics</span>
+      </div>
+      <div class="platform-logo wide">
+        <img src="/logos/search-console.svg" alt="Google Search Console" width="180" height="28" />
+      </div>
+      <div class="platform-logo">
+        <img src="/logos/google-ads.svg" alt="Google Ads" width="36" height="36" />
+        <span>Google Ads</span>
+      </div>
+      <div class="platform-logo">
+        <img src="/logos/tag-manager.svg" alt="Google Tag Manager" width="36" height="36" />
+        <span>Tag Manager</span>
+      </div>
+      <div class="platform-logo">
+        <img src="/logos/google-tag.svg" alt="Google Tag" width="24" height="24" />
+        <span>Google Tag</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© <span id="year"></span> Fire Spark Analytics · <a href="mailto:hello@firesparkanalytics.com">hello@firesparkanalytics.com</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form     = document.getElementById('contactForm');
+    const status   = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = '';
+
+      // Basic client-side validation
+      const name  = form.name.value.trim();
+      const email = form.email.value.trim();
+      if (!name || !email) {
+        status.className = 'form-status error';
+        status.textContent = 'Please fill in your name and email address.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            business:  form.business.value.trim(),
+            interest:  form.interest.value,
+            message:   form.message.value.trim(),
+          }),
+        });
+
+        if (res.ok) {
+          status.className = 'form-status success';
+          status.textContent = "Message sent! I'll be in touch within one business day.";
+          form.reset();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Server error');
+        }
+      } catch (err) {
+        status.className = 'form-status error';
+        status.textContent = `Something went wrong: ${err.message}. Please try emailing hello@firesparkanalytics.com directly.`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message →';
+      }
+    });
+  </script>
+
+</body>
 </html>
