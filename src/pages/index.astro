@@ -142,7 +142,6 @@
     }
     .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
 
-    /* chart stand-in — styled to evoke a analytics dashboard */
     .hero-visual {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
@@ -160,32 +159,6 @@
       display: flex;
       align-items: center;
       gap: 2rem;
-    }
-    .donut {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      background: conic-gradient(
-        #3B82F6   0%   52%,
-        #F97316  52%   72%,
-        #9CA3AF  72%   81%,
-        #FAAC18  81%  100%
-      );
-      position: relative;
-    }
-    .donut::after {
-      content: 'yoursite.com';
-      position: absolute;
-      inset: 25%;
-      background: var(--charcoal);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
     }
     .legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
     .legend li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); }
@@ -495,15 +468,26 @@
       <a href="#contact" class="hero-cta">Get a free consultation →</a>
     </div>
 
-    <div class="hero-visual" aria-label="Sample traffic sources chart">
+    <div class="hero-visual" aria-label="Illustrative traffic sources chart">
       <h3>Traffic Sources</h3>
       <div class="donut-wrap">
-        <div class="donut" role="img" aria-label="Pie chart showing traffic sources"></div>
+        <div class="donut-ring" role="img" aria-label="Illustrative donut chart showing traffic source categories">
+          <div class="donut-hole">
+            <div class="donut-card">
+              <span class="donut-card-url">yoursite.com</span>
+              <span class="donut-card-smiley">&#9786;</span>
+              <div class="donut-card-lines">
+                <div class="donut-card-line"></div>
+                <div class="donut-card-line short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <ul class="legend">
-          <li><span class="swatch s-referral"></span> Referral &nbsp;8.2%</li>
-          <li><span class="swatch s-organic"></span>  Organic &nbsp;3.2%</li>
-          <li><span class="swatch s-cpc"></span>      CPC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4%</li>
-          <li><span class="swatch s-email"></span>    E-mail &nbsp;&nbsp;1.2%</li>
+          <li><span class="swatch s-referral"></span> Referral</li>
+          <li><span class="swatch s-organic"></span>  Organic</li>
+          <li><span class="swatch s-cpc"></span>      CPC</li>
+          <li><span class="swatch s-email"></span>    E-mail</li>
         </ul>
       </div>
     </div>
