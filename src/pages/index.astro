@@ -652,7 +652,8 @@
           form.reset();
         } else {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || 'Server error');
+          const msg = [data.error, data.detail].filter(Boolean).join(' — ') || 'Server error';
+          throw new Error(msg);
         }
       } catch (err) {
         status.className = 'form-status error';
