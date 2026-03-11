@@ -69,10 +69,24 @@ export async function onRequestPost(context) {
 
   // ── Call Resend ──────────────────────────────────────
   const apiKey = env.RESEND_API_KEY;
+  console.log('[contact] Handler invoked.');
+  console.log('[contact] API key present:', !!apiKey);
+  console.log('[contact] API key prefix:', apiKey ? apiKey.slice(0, 6) : 'MISSING');
+
   if (!apiKey) {
-    console.error('RESEND_API_KEY environment variable is not set.');
+    console.error('[contact] RESEND_API_KEY is not set — aborting.');
     return new Response(JSON.stringify({ error: 'Server configuration error.' }), { status: 500, headers });
   }
+
+  const payload = {
+    from:     `${FROM_NAME} <${FROM_ADDRESS}>`,
+    to:       [TO_ADDRESS],
+    reply_to: email,
+    subject,
+    text:     textBody,
+    html:     htmlBody,
+  };
+  console.log('[contact] Sending to Resend. From:', payload.from, '/ To:', payload.to, '/ Subject:', payload.subject);
 
   let resendRes;
   try {
@@ -82,26 +96,29 @@ export async function onRequestPost(context) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        from:     `${FROM_NAME} <${FROM_ADDRESS}>`,
-        to:       [TO_ADDRESS],
-        reply_to: email,          // reply goes straight to the enquirer
-        subject,
-        text:     textBody,
-        html:     htmlBody,
-      }),
+      body: JSON.stringify(payload),
     });
   } catch (err) {
-    console.error('Resend fetch failed:', err);
-    return new Response(JSON.stringify({ error: 'Failed to reach email service.' }), { status: 502, headers });
+    console.error('[contact] fetch() to Resend threw an exception:', err.message, err.stack);
+    return new Response(JSON.stringify({ error: 'Failed to reach email service.', detail: err.message }), { status: 502, headers });
   }
+
+  console.log('[contact] Resend HTTP status:', resendRes.status);
+
+  const resendBody = await resendRes.text();
+  console.log('[contact] Resend response body:', resendBody);
 
   if (!resendRes.ok) {
-    const errData = await resendRes.json().catch(() => ({}));
-    console.error('Resend error:', errData);
-    return new Response(JSON.stringify({ error: 'Email service rejected the request.' }), { status: 502, headers });
+    let parsed = {};
+    try { parsed = JSON.parse(resendBody); } catch {}
+    console.error('[contact] Resend rejected the request. Status:', resendRes.status, 'Body:', resendBody);
+    return new Response(
+      JSON.stringify({ error: 'Email service rejected the request.', detail: parsed.message || resendBody }),
+      { status: 502, headers }
+    );
   }
 
+  console.log('[contact] Email sent successfully.');
   return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
 }
 
