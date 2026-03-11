@@ -143,119 +143,16 @@
     .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
 
     .hero-visual {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 1.75rem 2rem;
-      color: var(--white);
-    }
-    .hero-visual h3 {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      margin-bottom: 1.25rem;
-      color: rgba(255,255,255,0.9);
-    }
-    .donut-wrap {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    /* ── Donut ring ── */
-    .donut-ring {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      flex-shrink: 0;
-    }
-    /* Coloured segments */
-    .donut-ring::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        #4472C4   0deg  198deg,
-        #E07020 200deg  290deg,
-        #A0A0A0 292deg  326deg,
-        #F0B429 328deg  360deg
-      );
-    }
-    /* Dark hairlines between segments */
-    .donut-ring::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        transparent        0deg  196deg,
-        rgba(20,20,22,0.95) 196deg 202deg,
-        transparent        202deg 288deg,
-        rgba(20,20,22,0.95) 288deg 294deg,
-        transparent        294deg 324deg,
-        rgba(20,20,22,0.95) 324deg 330deg,
-        transparent        330deg 360deg
-      );
-      z-index: 1;
-    }
-    /* Centre hole punched out */
-    .donut-hole {
-      position: absolute;
-      inset: 20%;
-      border-radius: 50%;
-      background: var(--charcoal);
-      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
-    /* Card illustration inside the hole */
-    .donut-card {
-      width: 66%;
-      aspect-ratio: 3/4;
-      background: #6B8FC4;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10% 10% 12%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-    .donut-card-url {
-      font-size: 0.4rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.95);
-      letter-spacing: 0.01em;
-      white-space: nowrap;
-    }
-    .donut-card-smiley {
-      font-size: 0.95rem;
-      line-height: 1;
-      color: rgba(255,255,255,0.85);
-    }
-    .donut-card-lines {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .donut-card-line {
-      height: 2px;
-      border-radius: 2px;
-      background: rgba(255,255,255,0.5);
-    }
-    .donut-card-line.short { width: 55%; }
 
-    /* ── Legend ── */
-    .legend { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .legend li { display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; color: rgba(255,255,255,0.85); }
-    .swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
-    .s-referral { background: #4472C4; }
-    .s-organic  { background: #E07020; }
-    .s-cpc      { background: #A0A0A0; }
-    .s-email    { background: #F0B429; }
+    .hero-visual img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+    }
 
     /* ── Section utility ─────────────────────────────── */
     section { padding: 5rem 5vw; }
@@ -556,27 +453,7 @@
     </div>
 
     <div class="hero-visual" aria-label="Illustrative traffic sources chart">
-      <h3>Traffic Sources</h3>
-      <div class="donut-wrap">
-        <div class="donut-ring" role="img" aria-label="Illustrative donut chart showing traffic source categories">
-          <div class="donut-hole">
-            <div class="donut-card">
-              <span class="donut-card-url">yoursite.com</span>
-              <span class="donut-card-smiley">&#9786;</span>
-              <div class="donut-card-lines">
-                <div class="donut-card-line"></div>
-                <div class="donut-card-line short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="legend">
-          <li><span class="swatch s-referral"></span> Referral</li>
-          <li><span class="swatch s-organic"></span>  Organic</li>
-          <li><span class="swatch s-cpc"></span>      CPC</li>
-          <li><span class="swatch s-email"></span>    E-mail</li>
-        </ul>
-      </div>
+      <img src="/Decor_donut.png" alt="" />
     </div>
   </section>
 
