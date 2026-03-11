@@ -160,15 +160,102 @@
       align-items: center;
       gap: 2rem;
     }
-    .legend { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .legend li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: rgba(255,255,255,0.8); }
-    .swatch {
-      width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+
+    /* ── Donut ring ── */
+    .donut-ring {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      flex-shrink: 0;
     }
-    .s-referral { background: #3B82F6; }
-    .s-organic  { background: #F97316; }
-    .s-cpc      { background: #9CA3AF; }
-    .s-email    { background: #FAAC18; }
+    /* Coloured segments */
+    .donut-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        #4472C4   0deg  198deg,
+        #E07020 200deg  290deg,
+        #A0A0A0 292deg  326deg,
+        #F0B429 328deg  360deg
+      );
+    }
+    /* Dark hairlines between segments */
+    .donut-ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        transparent        0deg  196deg,
+        rgba(20,20,22,0.95) 196deg 202deg,
+        transparent        202deg 288deg,
+        rgba(20,20,22,0.95) 288deg 294deg,
+        transparent        294deg 324deg,
+        rgba(20,20,22,0.95) 324deg 330deg,
+        transparent        330deg 360deg
+      );
+      z-index: 1;
+    }
+    /* Centre hole punched out */
+    .donut-hole {
+      position: absolute;
+      inset: 20%;
+      border-radius: 50%;
+      background: var(--charcoal);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Card illustration inside the hole */
+    .donut-card {
+      width: 66%;
+      aspect-ratio: 3/4;
+      background: #6B8FC4;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10% 10% 12%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .donut-card-url {
+      font-size: 0.4rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .donut-card-smiley {
+      font-size: 0.95rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.85);
+    }
+    .donut-card-lines {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .donut-card-line {
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.5);
+    }
+    .donut-card-line.short { width: 55%; }
+
+    /* ── Legend ── */
+    .legend { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .legend li { display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; color: rgba(255,255,255,0.85); }
+    .swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+    .s-referral { background: #4472C4; }
+    .s-organic  { background: #E07020; }
+    .s-cpc      { background: #A0A0A0; }
+    .s-email    { background: #F0B429; }
 
     /* ── Section utility ─────────────────────────────── */
     section { padding: 5rem 5vw; }
