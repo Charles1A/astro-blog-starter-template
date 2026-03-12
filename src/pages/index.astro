@@ -83,7 +83,7 @@
     }
 
     /* ── Hero ────────────────────────────────────────── */
-    /* ── Intro (hero + why merged) ──────────────────────── */
+    /* ── Hero: two equal-height cards ───────────────────── */
     .intro {
       background: #FFFFFF;
       padding: 4rem 5vw 5rem;
@@ -92,71 +92,128 @@
     .intro-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
+      gap: 2.5rem;
+      align-items: stretch;      /* both columns same height */
       max-width: 1200px;
       margin: 0 auto;
     }
-    .intro-left {
+
+    /* Left card: headline + blurb + CTA */
+    .intro-left-card {
+      background: var(--white);
+      border: 1px solid #e0dfd7;
+      border-top: 3px solid var(--orange);
+      border-radius: 6px;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
-
-    .hero-text { color: var(--charcoal); }
-
-    .hero-tagline-bar {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      margin-bottom: 0;
-      border-radius: 2px;
-    }
-
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(1.75rem, 2.5vw, 2.6rem);
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
       line-height: 1.15;
       font-weight: 900;
-      margin-bottom: 0;
       color: var(--charcoal);
     }
-    .hero-headline em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
+    .hero-headline em { font-style: normal; color: var(--orange); }
     .hero-body {
       font-size: 1rem;
       color: var(--slate);
-      background: var(--white);
-      border: 1px solid #e0dfd7;
-      border-left: 3px solid var(--orange);
-      border-radius: 0 6px 6px 0;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 0;
       line-height: 1.75;
+      padding: 1rem 1.25rem;
+      background: var(--cloud);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 4px 4px 0;
+      flex: 1;                   /* grows to fill remaining card height */
     }
     .hero-body p + p { margin-top: 0.85rem; }
-
     .hero-cta {
       display: inline-block;
       background: var(--orange);
       color: var(--white);
       font-weight: 500;
       font-size: 0.95rem;
-      padding: 0.75rem 2rem;
+      padding: 0.7rem 1.75rem;
       border-radius: 2px;
       letter-spacing: 0.04em;
       transition: background 0.2s, transform 0.15s;
       align-self: flex-start;
     }
     .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
+
+    /* Right card: donut chart only */
+    .intro-right-card {
+      background: var(--white);
+      border: 2px solid #c8c8be;
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .why-donut-frame img {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+    }
+
+    /* ── Why section: two equal-height cards ─────────────── */
+    .why {
+      background: var(--cloud);
+    }
+    .why-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: stretch;      /* both columns same height */
+    }
+
+    /* Left card: why text + highlight */
+    .why-left-card {
+      background: var(--white);
+      border: 1px solid #e0dfd7;
+      border-top: 3px solid var(--orange);
+      border-radius: 6px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .why-left-card .section-label { display: block; margin-bottom: 0.25rem; }
+    .why-left-card .section-title { margin-bottom: 0; }
+    .why-body { font-size: 1rem; color: var(--slate); line-height: 1.75; flex: 1; }
+    .why-body p + p { margin-top: 1rem; }
+    .why-divider { border: none; border-top: 1px solid #e0dfd7; }
+    .why-highlight p { font-size: 1rem; color: var(--ink); line-height: 1.7; }
+    .why-highlight p + p { margin-top: 0.85rem; }
+    .why-highlight strong { font-weight: 500; color: var(--charcoal); }
+
+    /* Right card: three sample charts */
+    .why-right-card {
+      background: var(--white);
+      border: 2px solid #c8c8be;
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .sample-chart {
+      border: 1px solid #e0dfd7;
+      border-radius: 4px;
+      overflow: hidden;
+      flex: 1;                   /* three charts share the card height equally */
+      display: flex;
+      align-items: center;
+    }
+    .sample-chart img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top;
+    }
 
 
     /* ── Section utility ─────────────────────────────── */
@@ -451,7 +508,7 @@
 
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 768px) {
-      .intro-grid, .about {
+      .intro-grid, .why-cols, .about {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
@@ -472,53 +529,61 @@
     <a href="#contact" class="nav-contact">Contact</a>
   </nav>
 
-  <!-- ── Intro (hero + why merged) ── -->
-  <section class="intro" aria-labelledby="why-heading">
+  <!-- ── Hero ── -->
+  <section class="intro" aria-label="Hero">
     <div class="intro-grid">
 
-      <!-- Left column: headline, blurb, CTA, then why card -->
-      <div class="intro-left">
-        <div class="hero-text">
-          <h1 class="hero-headline">
-            High-impact, customized analytics <em>for busy e-preneurs.</em>
-          </h1>
-        </div>
+      <!-- Left card: headline, blurb, CTA -->
+      <div class="intro-left-card">
+        <h1 class="hero-headline">
+          High-impact, customized analytics <em>for busy e-preneurs.</em>
+        </h1>
         <div class="hero-body">
           <p>You've already got a full plate as an on-line entrepreneur. Delegate the analytics to me and refocus on what you enjoy. I'll equip you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
           <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering, I've got you covered.</p>
         </div>
         <a href="#contact" class="hero-cta">Get a free consultation →</a>
-        <div class="why-card">
-          <span class="section-label">The problem</span>
-          <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
-          <div class="why-body">
-            <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
-            <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
-          </div>
-          <hr class="why-divider" />
-          <div class="why-highlight">
-            <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
-            <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
-          </div>
-        </div>
       </div>
 
-      <!-- Right column: donut chart + work samples -->
-      <div class="intro-right">
+      <!-- Right card: donut chart only -->
+      <div class="intro-right-card">
         <div class="why-donut-frame">
           <img src="/Decor_donut.png" alt="" />
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Why Section ── -->
+  <section class="why" id="why" aria-labelledby="why-heading">
+    <div class="why-cols">
+
+      <!-- Left card: why text + highlight -->
+      <div class="why-left-card">
+        <span class="section-label">The problem</span>
+        <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
+        <div class="why-body">
+          <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
+          <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
+        </div>
+        <hr class="why-divider" />
+        <div class="why-highlight">
+          <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
+          <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
+        </div>
+      </div>
+
+      <!-- Right card: three sample charts -->
+      <div class="why-right-card">
         <div class="sample-chart">
           <img src="/example-1.png" alt="New users over time by first user source" />
-          <div class="sample-chart-caption">New users over time by first user source</div>
         </div>
         <div class="sample-chart">
           <img src="/example-2.png" alt="Active, scrolled and engaged pages" />
-          <div class="sample-chart-caption">Active, scrolled and engaged pages</div>
         </div>
         <div class="sample-chart">
-          <img src="/example-3.png" alt="Users by session source — % change from prior period" />
-          <div class="sample-chart-caption">Users by session source — % change from prior period</div>
+          <img src="/example-3.png" alt="Users by session source % change from prior period" />
         </div>
       </div>
 
