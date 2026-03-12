@@ -85,12 +85,12 @@
     /* ── Hero ────────────────────────────────────────── */
     .hero {
       background: #FFFFFF;
-      padding: 0 5vw 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      min-height: 480px;
+      padding: 4rem 5vw 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 780px;
+      margin: 0 auto;
       border-bottom: 1px solid #e8e8e0;
     }
 
@@ -144,17 +144,6 @@
     }
     .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
 
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-visual img {
-      width: 100%;
-      max-width: 420px;
-      height: auto;
-    }
 
     /* ── Section utility ─────────────────────────────── */
     section { padding: 5rem 5vw; }
@@ -180,10 +169,13 @@
     /* ── Why section ─────────────────────────────────── */
     .why {
       background: var(--cloud);
+    }
+    .why-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      gap: 4rem;
       align-items: start;
+      margin-bottom: 2.5rem;
     }
 
     .why-body { font-size: 1.05rem; color: var(--slate); line-height: 1.75; }
@@ -202,6 +194,17 @@
     }
     .why-highlight strong { font-weight: 500; color: var(--charcoal); }
 
+    .why-chart {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .why-chart img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
+
     /* ── Services callout ────────────────────────────── */
     .services {
       background: var(--charcoal);
@@ -212,7 +215,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 2.5rem;
     }
@@ -412,11 +415,12 @@
 
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 768px) {
-      .hero, .why, .about {
+      .why-cols, .about {
         grid-template-columns: 1fr;
         gap: 2.5rem;
       }
-      .hero { padding-bottom: 3rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero { padding: 2.5rem 1.25rem 3rem; }
       nav { padding: 0 1.25rem; }
       section { padding: 3.5rem 1.25rem; }
     }
@@ -446,27 +450,29 @@
       <a href="#contact" class="hero-cta">Get a free consultation →</a>
     </div>
 
-    <div class="hero-visual" aria-label="Illustrative traffic sources chart">
-      <img src="/Decor_donut.png" alt="" />
-    </div>
   </section>
 
   <!-- ── Why Section ── -->
   <section class="why" id="why" aria-labelledby="why-heading">
-    <div>
-      <span class="section-label">The problem</span>
-      <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
-      <div class="why-body">
-        <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
-        <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
+    <div class="why-cols">
+      <div>
+        <span class="section-label">The problem</span>
+        <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
+        <div class="why-body">
+          <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
+          <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
+        </div>
+      </div>
+      <div>
+        <div class="why-highlight">
+          <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
+          <br>
+          <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
+        </div>
       </div>
     </div>
-    <div>
-      <div class="why-highlight">
-        <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
-        <br>
-        <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
-      </div>
+    <div class="why-chart">
+      <img src="/Decor_donut.png" alt="" />
     </div>
   </section>
 
