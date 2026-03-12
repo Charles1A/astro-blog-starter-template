@@ -142,29 +142,20 @@
     }
     .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
 
-    /* Right card: donut chart — grainy orange border */
+    /* Right card: donut chart only */
     .intro-right-card {
-      position: relative;
       background: var(--white);
-      border-radius: 10px;
+      border: 2px solid #c8c8be;
+      border-radius: 8px;
       padding: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* Layered box-shadow: thick orange glow + outer diffuse */
-      box-shadow:
-        0 0 0 4px var(--orange),
-        0 0 0 6px rgba(249,115,22,0.55),
-        0 0 12px 8px rgba(249,115,22,0.25),
-        0 0 28px 14px rgba(249,115,22,0.10);
-      filter: url(#grain-border);
     }
     .why-donut-frame img {
       width: 100%;
       max-width: 360px;
       height: auto;
-      /* Un-apply grain filter to the image itself so only border is grainy */
-      filter: url(#degrain);
     }
 
     /* ── Why section: two equal-height cards ─────────────── */
@@ -201,7 +192,7 @@
     /* Right card: three sample charts */
     .why-right-card {
       background: var(--white);
-      border: 1px solid #e0dfd7;
+      border: 2px solid #c8c8be;
       border-radius: 8px;
       padding: 1.25rem;
       display: flex;
@@ -530,21 +521,6 @@
 </head>
 <body>
 
-  <!-- ── SVG filter definitions (grain effect) ── -->
-  <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <filter id="grain-border" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-        <!-- turbulence gives us the grain texture -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" result="noise"/>
-        <!-- erode slightly to make grain specks rather than blobs -->
-        <feMorphology operator="erode" radius="0.4" in="noise" result="eroded"/>
-        <!-- blend the grain into the source graphic's edges -->
-        <feComposite in="eroded" in2="SourceGraphic" operator="in" result="grained"/>
-        <feBlend in="SourceGraphic" in2="grained" mode="multiply"/>
-      </filter>
-    </defs>
-  </svg>
-
   <!-- ── Navigation ── -->
   <nav>
     <div class="nav-logo">
@@ -585,7 +561,7 @@
 
       <!-- Left card: why text + highlight -->
       <div class="why-left-card">
-
+        <span class="section-label">The problem</span>
         <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
         <div class="why-body">
           <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
