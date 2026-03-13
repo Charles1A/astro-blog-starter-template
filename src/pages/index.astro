@@ -26,6 +26,7 @@
       --cloud:   #F5F5F0;
       --white:   #FFFFFF;
       --nav-h:   72px;
+      --max-w:   1100px;
 
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
@@ -56,7 +57,6 @@
       height: var(--nav-h);
       background: var(--charcoal);
     }
-
     .nav-logo {
       font-family: var(--font-display);
       font-size: 1.6rem;
@@ -65,7 +65,6 @@
     .nav-logo span.fire  { color: var(--orange); }
     .nav-logo span.spark { color: var(--gold); }
     .nav-logo span.rest  { color: var(--white); }
-
     .nav-contact {
       font-size: 0.9rem;
       font-weight: 500;
@@ -77,146 +76,9 @@
       border-radius: 2px;
       transition: background 0.2s, color 0.2s;
     }
-    .nav-contact:hover {
-      background: var(--orange);
-      border-color: var(--orange);
-    }
+    .nav-contact:hover { background: var(--orange); border-color: var(--orange); }
 
-    /* ── Hero ────────────────────────────────────────── */
-    /* ── Hero: two equal-height cards ───────────────────── */
-    .intro {
-      background: #FFFFFF;
-      padding: 4rem 5vw 5rem;
-      border-bottom: 1px solid #e8e8e0;
-    }
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: stretch;      /* both columns same height */
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Left card: headline + blurb + CTA */
-    .intro-left-card {
-      background: var(--white);
-      border: 1px solid #e0dfd7;
-      border-top: 3px solid var(--orange);
-      border-radius: 6px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .hero-headline {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
-      line-height: 1.15;
-      font-weight: 900;
-      color: var(--charcoal);
-    }
-    .hero-headline em { font-style: normal; color: var(--orange); }
-    .hero-body {
-      font-size: 1rem;
-      color: var(--slate);
-      line-height: 1.75;
-      padding: 1rem 1.25rem;
-      background: var(--cloud);
-      border-left: 3px solid var(--orange);
-      border-radius: 0 4px 4px 0;
-      flex: 1;                   /* grows to fill remaining card height */
-    }
-    .hero-body p + p { margin-top: 0.85rem; }
-    .hero-cta {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 0.7rem 1.75rem;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.15s;
-      align-self: flex-start;
-    }
-    .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
-
-    /* Right card: donut chart only */
-    .intro-right-card {
-      background: var(--white);
-      border: 2px solid #c8c8be;
-      border-radius: 8px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .why-donut-frame img {
-      width: 100%;
-      max-width: 360px;
-      height: auto;
-    }
-
-    /* ── Why section: two equal-height cards ─────────────── */
-    .why {
-      background: var(--cloud);
-    }
-    .why-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: stretch;      /* both columns same height */
-    }
-
-    /* Left card: why text + highlight */
-    .why-left-card {
-      background: var(--white);
-      border: 1px solid #e0dfd7;
-      border-top: 3px solid var(--orange);
-      border-radius: 6px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .why-left-card .section-label { display: block; margin-bottom: 0.25rem; }
-    .why-left-card .section-title { margin-bottom: 0; }
-    .why-body { font-size: 1rem; color: var(--slate); line-height: 1.75; flex: 1; }
-    .why-body p + p { margin-top: 1rem; }
-    .why-divider { border: none; border-top: 1px solid #e0dfd7; }
-    .why-highlight p { font-size: 1rem; color: var(--ink); line-height: 1.7; }
-    .why-highlight p + p { margin-top: 0.85rem; }
-    .why-highlight strong { font-weight: 500; color: var(--charcoal); }
-
-    /* Right card: three sample charts */
-    .why-right-card {
-      background: var(--white);
-      border: 2px solid #c8c8be;
-      border-radius: 8px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .sample-chart {
-      border: 1px solid #e0dfd7;
-      border-radius: 4px;
-      overflow: hidden;
-      flex: 1;                   /* three charts share the card height equally */
-      display: flex;
-      align-items: center;
-    }
-    .sample-chart img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: top;
-    }
-
-
-    /* ── Section utility ─────────────────────────────── */
+    /* ── Shared section shell ────────────────────────── */
     section { padding: 5rem 5vw; }
 
     .section-label {
@@ -228,89 +90,159 @@
       color: var(--orange);
       margin-bottom: 0.75rem;
     }
-
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
       line-height: 1.2;
       color: var(--charcoal);
       margin-bottom: 1rem;
     }
 
-    /* ── Why card (inside intro-left) ───────────────────── */
-    .why-card {
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      background: var(--white);
+      padding: 4rem 5vw 3rem;
+      border-bottom: 1px solid #e8e8e0;
+    }
+
+    /* Centered headline above the two columns */
+    .hero-headline-wrap {
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 0 auto 2.5rem;
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      font-weight: 900;
+      color: var(--charcoal);
+    }
+    .hero-headline em { font-style: normal; color: var(--orange); display: block; }
+
+    /* Two-column body */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* Left card */
+    .hero-left {
       background: var(--cloud);
       border: 1px solid #e0dfd7;
-      border-top: 3px solid var(--orange);
-      border-radius: 6px;
+      border-left: 3px solid var(--orange);
+      border-radius: 0 6px 6px 0;
       padding: 1.75rem 2rem;
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.8;
     }
-    .why-card .section-label { margin-bottom: 0.5rem; display: block; }
-    .why-card .section-title { margin-bottom: 1rem; }
-    .why-body { font-size: 1rem; color: var(--slate); line-height: 1.75; }
+    .hero-left p + p { margin-top: 1rem; }
+
+    /* Right card: charts stacked diagonally + donut below */
+    .hero-right {
+      position: relative;
+      min-height: 420px;
+    }
+    .chart-stack {
+      position: relative;
+      width: 100%;
+      height: 340px;
+    }
+    .chart-item {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid #e0dfd7;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
+      width: 72%;
+    }
+    .chart-item img { width: 100%; height: auto; display: block; }
+    /* Descending diagonal offsets */
+    .chart-item:nth-child(1) { top: 0;    left: 0;   z-index: 3; }
+    .chart-item:nth-child(2) { top: 60px; left: 10%; z-index: 2; }
+    .chart-item:nth-child(3) { top: 120px; left: 20%; z-index: 1; }
+
+    .hero-donut {
+      margin-top: 1.25rem;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 1rem;
+    }
+    .hero-donut img {
+      width: 55%;
+      max-width: 240px;
+      height: auto;
+    }
+
+    /* Centered CTA below both columns */
+    .hero-cta-wrap {
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 2.5rem auto 0;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.85rem 2.5rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: #e56500; transform: translateY(-1px); }
+
+    /* ── WHY ─────────────────────────────────────────── */
+    .why {
+      background: var(--cloud);
+      text-align: center;
+    }
+    .why-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .why-body {
+      font-size: 1.05rem;
+      color: var(--slate);
+      line-height: 1.8;
+      text-align: left;
+    }
     .why-body p + p { margin-top: 1rem; }
-    .why-divider {
-      border: none;
-      border-top: 1px solid #e0dfd7;
-      margin: 1.25rem 0;
+    .why-highlight {
+      margin-top: 2rem;
+      background: var(--white);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 6px 6px 0;
+      padding: 1.5rem 1.75rem;
+      text-align: left;
     }
     .why-highlight p { font-size: 1rem; color: var(--ink); line-height: 1.7; }
     .why-highlight p + p { margin-top: 0.85rem; }
     .why-highlight strong { font-weight: 500; color: var(--charcoal); }
 
-    /* ── Right column: donut + samples ──────────────────── */
-    .intro-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .why-donut-frame {
-      background: var(--white);
-      border: 2px solid #c8c8be;
-      border-radius: 8px;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .why-donut-frame img {
-      width: 100%;
-      max-width: 340px;
-      height: auto;
-    }
-    .sample-chart {
-      background: var(--white);
-      border: 1px solid #e0dfd7;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .sample-chart img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sample-chart-caption {
-      padding: 0.5rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--slate);
-      border-top: 1px solid #e0dfd7;
-      background: var(--cloud);
-    }
-
-    /* ── Services callout ────────────────────────────── */
+    /* ── SERVICES ────────────────────────────────────── */
     .services {
       background: var(--charcoal);
       color: var(--white);
       text-align: center;
     }
+    .services .section-label { color: var(--gold); }
     .services .section-title { color: var(--white); }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 2.5rem;
+      max-width: var(--max-w);
+      margin-left: auto;
+      margin-right: auto;
     }
     .service-card {
       background: rgba(255,255,255,0.06);
@@ -318,23 +250,27 @@
       border-radius: 6px;
       padding: 1.5rem 1.25rem;
       transition: background 0.2s;
+      text-align: left;
     }
     .service-card:hover { background: rgba(249,115,22,0.15); }
     .service-card .icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
     .service-card h4 { font-weight: 500; font-size: 1rem; margin-bottom: 0.4rem; color: var(--white); }
     .service-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
 
-    /* ── About ───────────────────────────────────────── */
+    /* ── ABOUT ───────────────────────────────────────── */
     .about {
+      background: var(--white);
+    }
+    .about-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: start;
+      max-width: var(--max-w);
+      margin: 0 auto;
     }
-
     .about-bio { font-size: 1.05rem; color: var(--slate); line-height: 1.75; }
     .about-bio p + p { margin-top: 1rem; }
-
     .about-skills {
       display: flex;
       flex-wrap: wrap;
@@ -350,7 +286,6 @@
       padding: 0.3rem 0.85rem;
       border-radius: 999px;
     }
-
     .about-name {
       font-family: var(--font-display);
       font-size: 1.2rem;
@@ -359,7 +294,7 @@
     }
     .about-name span { color: var(--slate); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; }
 
-    /* ── Contact Form ────────────────────────────────── */
+    /* ── CONTACT FORM ────────────────────────────────── */
     .contact-box {
       background: var(--cloud);
       border-radius: 8px;
@@ -372,13 +307,9 @@
       margin-bottom: 1.5rem;
     }
     .contact-box .contact-intro strong { color: var(--charcoal); font-weight: 500; }
-
     .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
     .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
-
     .form-group label {
       font-size: 0.8rem;
       font-weight: 500;
@@ -386,7 +317,6 @@
       text-transform: uppercase;
       color: var(--slate);
     }
-
     .form-group input,
     .form-group textarea,
     .form-group select {
@@ -409,7 +339,6 @@
       box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
     }
     .form-group textarea { resize: vertical; min-height: 110px; }
-
     .btn-primary {
       display: inline-block;
       background: var(--orange);
@@ -426,27 +355,16 @@
     }
     .btn-primary:hover    { background: #e56500; transform: translateY(-1px); }
     .btn-primary:disabled { background: #aaa; cursor: not-allowed; transform: none; }
-
     .form-status {
       font-size: 0.9rem;
       padding: 0.6rem 0.85rem;
       border-radius: 4px;
       display: none;
     }
-    .form-status.success {
-      display: block;
-      background: #d1fae5;
-      color: #065f46;
-      border: 1px solid #6ee7b7;
-    }
-    .form-status.error {
-      display: block;
-      background: #fee2e2;
-      color: #991b1b;
-      border: 1px solid #fca5a5;
-    }
+    .form-status.success { display: block; background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .form-status.error   { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
 
-    /* ── Platforms ───────────────────────────────────── */
+    /* ── PLATFORMS ───────────────────────────────────── */
     .platforms {
       background: var(--cloud);
       text-align: center;
@@ -457,32 +375,24 @@
       justify-content: center;
       align-items: center;
       gap: 1rem 2.5rem;
+      margin-top: 2rem;
     }
     .platform-logo {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
       background: var(--white);
       border: 1px solid #e4e4dc;
       border-radius: 8px;
       padding: 1rem 1.5rem;
       transition: box-shadow 0.2s, transform 0.15s;
       min-width: 110px;
+      justify-content: center;
     }
-    .platform-logo:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
-      transform: translateY(-2px);
-    }
-    .platform-logo img {
-      height: 36px;
-      width: auto;
-      object-fit: contain;
-    }
+    .platform-logo:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.09); transform: translateY(-2px); }
+    .platform-logo img { height: 36px; width: auto; object-fit: contain; }
     .platform-logo.wide img { height: 28px; width: 180px; }
 
-
-    /* ── Footer ──────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────── */
     footer {
       background: var(--charcoal);
       color: rgba(255,255,255,0.5);
@@ -492,30 +402,20 @@
     }
     footer a { color: var(--orange); }
 
-    /* ── Animations ──────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .hero-text > * {
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards;
-    }
-    .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
-    .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
-    .hero-text > *:nth-child(4) { animation-delay: 0.55s; }
-
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 768px) {
-      .intro-grid, .why-cols, .about {
+      .hero-grid, .about-inner {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
       .services-grid { grid-template-columns: 1fr; }
-      .intro { padding: 2.5rem 1.25rem 3rem; }
-      nav { padding: 0 1.25rem; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
       section { padding: 3.5rem 1.25rem; }
+      nav { padding: 0 1.25rem; }
+      .chart-stack { height: 260px; }
+      .chart-item { width: 80%; }
+      .chart-item:nth-child(2) { top: 48px; left: 8%; }
+      .chart-item:nth-child(3) { top: 96px; left: 16%; }
     }
   </style>
 </head>
@@ -530,63 +430,65 @@
   </nav>
 
   <!-- ── Hero ── -->
-  <section class="intro" aria-label="Hero">
-    <div class="intro-grid">
+  <section class="hero" aria-label="Hero">
 
-      <!-- Left card: headline, blurb, CTA -->
-      <div class="intro-left-card">
-        <h1 class="hero-headline">
-          High-impact, customized analytics <em>for busy e-preneurs.</em>
-        </h1>
-        <div class="hero-body">
-          <p>You've already got a full plate as an on-line entrepreneur. Delegate the analytics to me and refocus on what you enjoy. I'll equip you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
-          <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering, I've got you covered.</p>
-        </div>
-        <a href="#contact" class="hero-cta">Get a free consultation →</a>
+    <!-- Centered headline -->
+    <div class="hero-headline-wrap">
+      <h1 class="hero-headline">
+        High-impact, customized analytics
+        <em>for busy e-preneurs.</em>
+      </h1>
+    </div>
+
+    <!-- Two columns -->
+    <div class="hero-grid">
+
+      <!-- Left: intro blurb -->
+      <div class="hero-left">
+        <p>You've already got a full plate as an on-line entrepreneur. Delegate the analytics to me and refocus on what you enjoy. I'll equip you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
+        <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering, I've got you covered.</p>
       </div>
 
-      <!-- Right card: donut chart only -->
-      <div class="intro-right-card">
-        <div class="why-donut-frame">
+      <!-- Right: diagonal charts + donut below -->
+      <div class="hero-right">
+        <div class="chart-stack">
+          <div class="chart-item">
+            <img src="/example-2.png" alt="Active, scrolled and engaged pages" />
+          </div>
+          <div class="chart-item">
+            <img src="/example-1.png" alt="New users over time by first user source" />
+          </div>
+          <div class="chart-item">
+            <img src="/example-3.png" alt="Users by session source % change from prior period" />
+          </div>
+        </div>
+        <div class="hero-donut">
           <img src="/Decor_donut.png" alt="" />
         </div>
       </div>
 
     </div>
+
+    <!-- Centered CTA -->
+    <div class="hero-cta-wrap">
+      <a href="#contact" class="hero-cta">Get a free consultation →</a>
+    </div>
+
   </section>
 
-  <!-- ── Why Section ── -->
+  <!-- ── Why ── -->
   <section class="why" id="why" aria-labelledby="why-heading">
-    <div class="why-cols">
-
-      <!-- Left card: why text + highlight -->
-      <div class="why-left-card">
-        <span class="section-label">The problem</span>
-        <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
-        <div class="why-body">
-          <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
-          <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
-        </div>
-        <hr class="why-divider" />
-        <div class="why-highlight">
-          <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
-          <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
-        </div>
+    <div class="why-inner">
+      <span class="section-label">The problem</span>
+      <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
+      <div class="why-body">
+        <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
+        <p>I can fully leverage your data to provide rich, multi-dimensional insights that speak to your unique business and growth objectives. I excel in identifying signals in the noise, applying context, communicating meaning, addressing your specific questions and needs.</p>
       </div>
-
-      <!-- Right card: three sample charts -->
-      <div class="why-right-card">
-        <div class="sample-chart">
-          <img src="/example-1.png" alt="New users over time by first user source" />
-        </div>
-        <div class="sample-chart">
-          <img src="/example-2.png" alt="Active, scrolled and engaged pages" />
-        </div>
-        <div class="sample-chart">
-          <img src="/example-3.png" alt="Users by session source % change from prior period" />
-        </div>
+      <div class="why-highlight">
+        <p><strong>Importantly, you'll get clarity on where to focus your attention and resources, helping you economize.</strong></p>
+        <p>Are your Google Ad campaigns delivering the expected returns on investment? Is your SEO bringing in the traffic? I'll elucidate what's performing and what's not so you can re-calibrate for growth, conversions, and other KPIs.</p>
       </div>
-
     </div>
   </section>
 
@@ -608,7 +510,7 @@
       <div class="service-card">
         <div class="icon">📈</div>
         <h4>Campaign ROI</h4>
-        <p>Know exactly which campaigns are earning their keep — and which aren't.</p>
+        <p>Know exactly which campaigns are earning their keep and which aren't.</p>
       </div>
       <div class="service-card">
         <div class="icon">🔍</div>
@@ -630,64 +532,66 @@
 
   <!-- ── About ── -->
   <section class="about" id="about" aria-labelledby="about-heading">
-    <div>
-      <span class="section-label">About me</span>
-      <h2 class="section-title" id="about-heading">A scientist's approach to your business data</h2>
-      <div class="about-bio">
-        <p>A former research scientist, I have extensive experience in advanced data analysis. I also have ample experience explaining complicated information to students and other non-experts. If you're not a numbers or analytics person, I've got you.</p>
+    <div class="about-inner">
+      <div>
+        <span class="section-label">About me</span>
+        <h2 class="section-title" id="about-heading">A scientist's approach to your business data</h2>
+        <div class="about-bio">
+          <p>A former research scientist, I have extensive experience in advanced data analysis. I also have ample experience explaining complicated information to students and other non-experts. If you're not a numbers or analytics person, I've got you.</p>
+        </div>
+        <div class="about-skills">
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Clustering</span>
+          <span class="skill-tag">Regression</span>
+          <span class="skill-tag">Classification</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">SEO Analytics</span>
+        </div>
+        <p class="about-name">Charles Ashton <span>M.S.</span></p>
       </div>
-      <div class="about-skills">
-        <span class="skill-tag">Statistical Analysis</span>
-        <span class="skill-tag">Clustering</span>
-        <span class="skill-tag">Regression</span>
-        <span class="skill-tag">Classification</span>
-        <span class="skill-tag">Data Visualization</span>
-        <span class="skill-tag">SEO Analytics</span>
-      </div>
-      <p class="about-name">Charles Ashton <span>M.S.</span></p>
-    </div>
-    <div class="contact-box" id="contact">
-      <p class="contact-intro">
-        <strong>Ready to get impactful insights that will help you optimize your decision making?</strong>
-        Get in touch. You and I will start things off with a free consultation to identify your specific analytics needs.
-        I'll then outline an analytics package and determine a timeline and quote.
-      </p>
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+      <div class="contact-box" id="contact">
+        <p class="contact-intro">
+          <strong>Ready to get impactful insights that will help you optimize your decision making?</strong>
+          Get in touch. You and I will start things off with a free consultation to identify your specific analytics needs.
+          I'll then outline an analytics package and determine a timeline and quote.
+        </p>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
           </div>
           <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            <label for="business">Your website / business</label>
+            <input type="text" id="business" name="business" placeholder="mystore.com" />
           </div>
-        </div>
-        <div class="form-group">
-          <label for="business">Your website / business</label>
-          <input type="text" id="business" name="business" placeholder="mystore.com" />
-        </div>
-        <div class="form-group">
-          <label for="interest">Primary interest</label>
-          <select id="interest" name="interest">
-            <option value="">— Select one —</option>
-            <option>User engagement analysis</option>
-            <option>Conversion rate optimisation</option>
-            <option>Campaign ROI / Google Ads</option>
-            <option>SEO analytics</option>
-            <option>Customer segmentation</option>
-            <option>UTM &amp; Tag Manager setup</option>
-            <option>Funnel &amp; attribution analysis</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Anything else you'd like to share?</label>
-          <textarea id="message" name="message" placeholder="Tell me a bit about your business and what questions you're trying to answer…"></textarea>
-        </div>
-        <div class="form-status" id="formStatus"></div>
-        <button type="submit" class="btn-primary" id="submitBtn">Send message →</button>
-      </form>
+          <div class="form-group">
+            <label for="interest">Primary interest</label>
+            <select id="interest" name="interest">
+              <option value="">— Select one —</option>
+              <option>User engagement analysis</option>
+              <option>Conversion rate optimisation</option>
+              <option>Campaign ROI / Google Ads</option>
+              <option>SEO analytics</option>
+              <option>Customer segmentation</option>
+              <option>UTM &amp; Tag Manager setup</option>
+              <option>Funnel &amp; attribution analysis</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Anything else you'd like to share?</label>
+            <textarea id="message" name="message" placeholder="Tell me a bit about your business and what questions you're trying to answer…"></textarea>
+          </div>
+          <div class="form-status" id="formStatus"></div>
+          <button type="submit" class="btn-primary" id="submitBtn">Send message →</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -722,8 +626,8 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const form     = document.getElementById('contactForm');
-    const status   = document.getElementById('formStatus');
+    const form      = document.getElementById('contactForm');
+    const status    = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', async (e) => {
@@ -731,7 +635,6 @@
       status.className = 'form-status';
       status.textContent = '';
 
-      // Basic client-side validation
       const name  = form.name.value.trim();
       const email = form.email.value.trim();
       if (!name || !email) {
@@ -750,9 +653,9 @@
           body: JSON.stringify({
             name,
             email,
-            business:  form.business.value.trim(),
-            interest:  form.interest.value,
-            message:   form.message.value.trim(),
+            business: form.business.value.trim(),
+            interest: form.interest.value,
+            message:  form.message.value.trim(),
           }),
         });
 
