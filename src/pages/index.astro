@@ -142,16 +142,27 @@
       line-height: 1.8;
     }
     .hero-left p + p { margin-top: 1rem; }
+    .hero-decor {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 1.1rem 0;
+      opacity: 0.22;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
 
     /* Right card: charts stacked diagonally + donut below */
     .hero-right {
       position: relative;
-      min-height: 420px;
     }
     .chart-stack {
       position: relative;
       width: 100%;
-      height: 340px;
+      height: 380px;
     }
     .chart-item {
       position: absolute;
@@ -169,10 +180,12 @@
     .chart-item:nth-child(3) { top: 120px; left: 20%; z-index: 1; }
 
     .hero-donut {
-      margin-top: 1.25rem;
+      margin-top: -2rem;
       display: flex;
       justify-content: flex-end;
       padding-right: 1rem;
+      position: relative;
+      z-index: 0;
     }
     .hero-donut img {
       width: 55%;
@@ -446,7 +459,13 @@
       <!-- Left: intro blurb -->
       <div class="hero-left">
         <p>You've already got a full plate as an on-line entrepreneur. Delegate the analytics to me and refocus on what you enjoy. I'll equip you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
+        <div class="hero-decor" aria-hidden="true">
+          <span>∑</span><span>◦</span><span>χ²</span><span>◦</span><span>μ</span><span>◦</span><span>∂</span><span>◦</span><span>σ</span><span>◦</span><span>∫</span><span>◦</span><span>β</span>
+        </div>
         <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering, I've got you covered.</p>
+        <div class="hero-decor" aria-hidden="true">
+          <span>≈</span><span>◦</span><span>R²</span><span>◦</span><span>∇</span><span>◦</span><span>λ</span><span>◦</span><span>π</span><span>◦</span><span>θ</span><span>◦</span><span>α</span>
+        </div>
       </div>
 
       <!-- Right: diagonal charts + donut below -->
@@ -471,7 +490,7 @@
 
     <!-- Centered CTA -->
     <div class="hero-cta-wrap">
-      <a href="#contact" class="hero-cta">Get a free consultation →</a>
+      <a href="#contact" class="hero-cta">Get in touch</a>
     </div>
 
   </section>
@@ -479,7 +498,6 @@
   <!-- ── Why ── -->
   <section class="why" id="why" aria-labelledby="why-heading">
     <div class="why-inner">
-      <span class="section-label">The problem</span>
       <h2 class="section-title" id="why-heading">Why get customized analytics for your e-business?</h2>
       <div class="why-body">
         <p>One-size-fits-all dashboards on your web host or e-commerce platform offer limited information and aren't focused on what's important to you.</p>
