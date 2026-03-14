@@ -30,6 +30,71 @@
 
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
+
+      /* ── Hero tuning knobs ───────────────────────────
+         Adjust these values to reposition hero elements
+         without touching anything else.
+      ───────────────────────────────────────────────── */
+
+      /* Overall hero vertical padding (top / bottom) */
+      --hero-pad-top:    1.75rem;
+      --hero-pad-bottom: 1.5rem;
+
+      /* Gap between headline and the two columns */
+      --hero-headline-gap: 1.25rem;
+
+      /* Gap between columns and CTA button */
+      --hero-cta-gap: 1.25rem;
+
+      /* Headline font size (clamp: min, preferred, max) */
+      --hero-headline-size: clamp(1.6rem, 2.6vw, 2.4rem);
+
+      /* Chart stack: total height of the stacked area */
+      --chart-stack-h: 210px;
+
+      /* Chart stack: vertical offset between each chart card */
+      --chart-step: 50px;
+
+      /* Chart card width as % of the right column */
+      --chart-w: 80%;
+
+      /* Donut: gap above it (below chart stack) */
+      --donut-gap: 20px;
+
+      /* Donut: width as % of right column */
+      --donut-w: 52%;
+
+      /* Donut: max pixel width */
+      --donut-max-w: 250px;
+
+      /* ── Intro blurb card ────────────────────────────
+         Controls the left card in the hero section.
+      ───────────────────────────────────────────────── */
+
+      /* Border thickness */
+      --blurb-border-width: 2.5px;
+
+      /* Border color */
+      --blurb-border-color: var(--orange);
+
+      /* Border radius */
+      --blurb-border-radius: 6px;
+
+      /* Internal padding (top/bottom and left/right) */
+      --blurb-pad-y: 1.75rem;
+      --blurb-pad-x: 2rem;
+
+      /* Font size */
+      --blurb-font-size: 1.15rem;
+
+      /* Line height */
+      --blurb-line-height: 1.85;
+
+      /* Gap between the two paragraphs */
+      --blurb-para-gap: 1.1rem;
+
+      /* Gap above/below the • • • and ～ decorators */
+      --blurb-decor-gap: 1.25rem;
     }
 
     html { scroll-behavior: smooth; }
@@ -101,7 +166,7 @@
     /* ── HERO ────────────────────────────────────────── */
     .hero {
       background: var(--white);
-      padding: 1.75rem 5vw 1.5rem;
+      padding: var(--hero-pad-top) 5vw var(--hero-pad-bottom);
       border-bottom: 1px solid #e8e8e0;
     }
 
@@ -109,11 +174,11 @@
     .hero-headline-wrap {
       text-align: center;
       max-width: var(--max-w);
-      margin: 0 auto 1.25rem;
+      margin: 0 auto var(--hero-headline-gap);
     }
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      font-size: var(--hero-headline-size);
       line-height: 1.15;
       font-weight: 900;
       color: var(--charcoal);
@@ -133,17 +198,17 @@
     /* Left card */
     .hero-left {
       background: var(--white);
-      border: 2.5px solid var(--orange);
-      border-radius: 6px;
-      padding: 1.75rem 2rem;
-      font-size: 1.15rem;
+      border: var(--blurb-border-width) solid var(--blurb-border-color);
+      border-radius: var(--blurb-border-radius);
+      padding: var(--blurb-pad-y) var(--blurb-pad-x);
+      font-size: var(--blurb-font-size);
       color: var(--slate);
-      line-height: 1.85;
+      line-height: var(--blurb-line-height);
     }
-    .hero-left p + p { margin-top: 1.1rem; }
+    .hero-left p + p { margin-top: var(--blurb-para-gap); }
     .hero-decor {
       text-align: center;
-      margin: 1.25rem 0;
+      margin: var(--blurb-decor-gap) 0;
       opacity: 0.3;
       color: var(--slate);
       font-size: 1.1rem;
@@ -163,7 +228,7 @@
     .chart-stack {
       position: relative;
       width: 100%;
-      height: 210px;
+      height: var(--chart-stack-h);
       flex-shrink: 0;
     }
     .chart-item {
@@ -173,22 +238,22 @@
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
-      width: 80%;
+      width: var(--chart-w);
     }
     .chart-item img { width: 100%; height: auto; display: block; }
-    /* Descending diagonal offsets */
-    .chart-item:nth-child(1) { top: 0;    left: 0;   z-index: 3; }
-    .chart-item:nth-child(2) { top: 28px; left: 10%; z-index: 2; }
-    .chart-item:nth-child(3) { top: 56px; left: 20%; z-index: 1; }
+    /* Descending diagonal offsets — driven by --chart-step */
+    .chart-item:nth-child(1) { top: 0;                          left: 0;   z-index: 3; }
+    .chart-item:nth-child(2) { top: var(--chart-step);          left: 10%; z-index: 2; }
+    .chart-item:nth-child(3) { top: calc(var(--chart-step)*2);  left: 20%; z-index: 1; }
 
     .hero-donut {
-      margin-top: 6px;
+      margin-top: var(--donut-gap);
       display: flex;
       justify-content: flex-start;
     }
     .hero-donut img {
-      width: 52%;
-      max-width: 220px;
+      width: var(--donut-w);
+      max-width: var(--donut-max-w);
       height: auto;
     }
 
@@ -196,7 +261,7 @@
     .hero-cta-wrap {
       text-align: center;
       max-width: var(--max-w);
-      margin: 1.25rem auto 0;
+      margin: var(--hero-cta-gap) auto 0;
     }
     .hero-cta {
       display: inline-block;
