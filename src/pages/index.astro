@@ -101,7 +101,7 @@
     /* ── HERO ────────────────────────────────────────── */
     .hero {
       background: var(--white);
-      padding: 4rem 5vw 3rem;
+      padding: 1.75rem 5vw 1.5rem;
       border-bottom: 1px solid #e8e8e0;
     }
 
@@ -109,11 +109,11 @@
     .hero-headline-wrap {
       text-align: center;
       max-width: var(--max-w);
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 1.25rem;
     }
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
       line-height: 1.15;
       font-weight: 900;
       color: var(--charcoal);
@@ -163,7 +163,8 @@
     .chart-stack {
       position: relative;
       width: 100%;
-      height: 380px;
+      height: 210px;
+      flex-shrink: 0;
     }
     .chart-item {
       position: absolute;
@@ -172,23 +173,22 @@
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
-      width: 88%;
+      width: 80%;
     }
     .chart-item img { width: 100%; height: auto; display: block; }
     /* Descending diagonal offsets */
     .chart-item:nth-child(1) { top: 0;    left: 0;   z-index: 3; }
-    .chart-item:nth-child(2) { top: 60px; left: 10%; z-index: 2; }
-    .chart-item:nth-child(3) { top: 120px; left: 20%; z-index: 1; }
+    .chart-item:nth-child(2) { top: 28px; left: 10%; z-index: 2; }
+    .chart-item:nth-child(3) { top: 56px; left: 20%; z-index: 1; }
 
     .hero-donut {
-      margin-top: 0.5rem;
+      margin-top: 6px;
       display: flex;
       justify-content: flex-start;
-      padding-left: 0;
     }
     .hero-donut img {
-      width: 42%;
-      max-width: 190px;
+      width: 52%;
+      max-width: 220px;
       height: auto;
     }
 
@@ -196,7 +196,7 @@
     .hero-cta-wrap {
       text-align: center;
       max-width: var(--max-w);
-      margin: 2.5rem auto 0;
+      margin: 1.25rem auto 0;
     }
     .hero-cta {
       display: inline-block;
