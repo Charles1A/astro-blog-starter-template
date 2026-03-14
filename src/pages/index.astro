@@ -71,7 +71,7 @@
       --hero-col-gap: 2.5rem;
 
       /* Inset padding on each column (adds visual space between them) */
-      --hero-col-inset: 3rem;
+      --hero-col-inset: 5rem;
 
       /* ── Intro blurb card ────────────────────────────
          Controls the left card in the hero section.
@@ -210,6 +210,7 @@
       font-size: var(--blurb-font-size);
       color: var(--slate);
       line-height: var(--blurb-line-height);
+      margin-right: var(--hero-col-inset);
     }
     .hero-left p + p { margin-top: var(--blurb-para-gap); }
     .hero-decor {
@@ -230,6 +231,7 @@
     .hero-right {
       display: flex;
       flex-direction: column;
+      margin-left: var(--hero-col-inset);
     }
     .chart-stack {
       position: relative;
