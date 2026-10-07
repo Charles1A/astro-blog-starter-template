@@ -40,71 +40,24 @@ import GoogleTag from '../components/GoogleTag.astro';
          without touching anything else.
       ───────────────────────────────────────────────── */
 
-      /* Overall hero vertical padding (top / bottom) */
-      --hero-pad-top:    1.75rem;
-      --hero-pad-bottom: 1.5rem;
+      /* Overall hero vertical padding (top / bottom) — shrinks on short screens via the media query below */
+      --hero-pad-top:    clamp(1.5rem, 4vh, 3rem);
+      --hero-pad-bottom: clamp(1.5rem, 4vh, 3rem);
 
-      /* Gap between headline and the two columns */
-      --hero-headline-gap: 1.9rem;
+      /* Gap between headline and body copy */
+      --hero-headline-gap: clamp(1rem, 2.5vh, 1.75rem);
 
-      /* Gap between columns and CTA button */
-      --hero-cta-gap: 1.25rem;
+      /* Gap between body copy and CTA button */
+      --hero-cta-gap: clamp(1.25rem, 3vh, 2rem);
 
       /* Headline font size (clamp: min, preferred, max) */
       --hero-headline-size: clamp(1.6rem, 2.6vw, 2.4rem);
 
-      /* Chart stack: total height of the stacked area */
-      --chart-stack-h: 210px;
-
-      /* Chart stack: vertical offset between each chart card */
-      --chart-step: 50px;
-
-      /* Chart card width as % of the right column */
-      --chart-w: 80%;
-
-      /* Donut: gap above it (below chart stack) */
-      --donut-gap: 60px;
-
-      /* Donut: width as % of right column */
-      --donut-w: 50%;
-
-      /* Donut: max pixel width */
-      --donut-max-w: 275px;
-
-      /* Gap between the two hero columns */
-      --hero-col-gap: 2.5rem;
-
-      /* Inset padding on each column (adds visual space between them) */
-      --hero-col-inset: 5rem;
-
-      /* ── Intro blurb card ────────────────────────────
-         Controls the left card in the hero section.
-      ───────────────────────────────────────────────── */
-
-      /* Border thickness */
-      --blurb-border-width: 2.5px;
-
-      /* Border color */
-      --blurb-border-color: var(--orange);
-
-      /* Border radius */
-      --blurb-border-radius: 6px;
-
-      /* Internal padding (top/bottom and left/right) */
-      --blurb-pad-y: 1.4rem;
-      --blurb-pad-x: 2rem;
-
-      /* Font size */
-      --blurb-font-size: 1.15rem;
-
-      /* Line height */
-      --blurb-line-height: 1.85;
-
-      /* Gap between the two paragraphs */
-      --blurb-para-gap: 1.1rem;
-
-      /* Gap above/below the • • • and ～ decorators */
-      --blurb-decor-gap: 0.4rem;
+      /* Body copy: max line length and sizing */
+      --hero-body-max-w: 640px;
+      --hero-body-font-size: clamp(1rem, 1.1vw, 1.1rem);
+      --hero-body-line-height: 1.7;
+      --hero-body-para-gap: 1rem;
     }
 
     html { scroll-behavior: smooth; }
@@ -175,108 +128,63 @@ import GoogleTag from '../components/GoogleTag.astro';
 
     /* ── HERO ────────────────────────────────────────── */
     .hero {
+      position: relative;
       background: var(--white);
       padding: var(--hero-pad-top) 5vw var(--hero-pad-bottom);
       border-bottom: 1px solid #e8e8e0;
+      overflow: hidden;
     }
 
-    /* Centered headline above the two columns */
-    .hero-headline-wrap {
+    /* Soft background glow — stands in for a hard-edged decorative shape.
+       Blurred and low-opacity so it never competes with the text on top of it;
+       a flat-colored circle behind body copy risks dropping text contrast. */
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(720px, 90vw);
+      height: min(720px, 90vw);
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, var(--gold) 0%, var(--orange) 45%, transparent 72%);
+      opacity: 0.16;
+      filter: blur(60px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
       text-align: center;
       max-width: var(--max-w);
-      margin: 0 auto var(--hero-headline-gap);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     .hero-headline {
       font-family: var(--font-display);
       font-size: var(--hero-headline-size);
       line-height: 1.15;
       font-weight: 900;
       color: var(--charcoal);
+      margin-bottom: var(--hero-headline-gap);
     }
     .hero-headline em { font-style: normal; color: var(--orange); display: block; }
 
-    /* Two-column body */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    /* Left card */
-    .hero-left {
-      background: var(--white);
-      border: var(--blurb-border-width) solid var(--blurb-border-color);
-      border-radius: var(--blurb-border-radius);
-      padding: var(--blurb-pad-y) var(--blurb-pad-x);
-      font-size: var(--blurb-font-size);
+    .hero-body {
+      max-width: var(--hero-body-max-w);
+      font-size: var(--hero-body-font-size);
+      line-height: var(--hero-body-line-height);
       color: var(--slate);
-      line-height: var(--blurb-line-height);
-      margin-right: var(--hero-col-inset);
     }
-    .hero-left p + p { margin-top: var(--blurb-para-gap); }
-    .hero-decor {
-      text-align: center;
-      margin: var(--blurb-decor-gap) 0;
-      opacity: 0.3;
-      color: var(--slate);
-      font-size: 1.1rem;
-      letter-spacing: 0.3em;
-      user-select: none;
-    }
-    .hero-decor-wave {
-      font-size: 1.6rem;
-      letter-spacing: 0;
-    }
+    .hero-body p + p { margin-top: var(--hero-body-para-gap); }
 
-    /* Right column: chart stack then donut below, left-aligned */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      margin-left: var(--hero-col-inset);
-    }
-    .chart-stack {
-      position: relative;
-      width: 100%;
-      height: var(--chart-stack-h);
-      flex-shrink: 0;
-    }
-    .chart-item {
-      position: absolute;
-      background: var(--white);
-      border: 1px solid #e0dfd7;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
-      width: var(--chart-w);
-    }
-    .chart-item img { width: 100%; height: auto; display: block; }
-    /* Descending diagonal offsets — driven by --chart-step */
-    .chart-item:nth-child(1) { top: 0;                          left: 0;   z-index: 3; }
-    .chart-item:nth-child(2) { top: var(--chart-step);          left: 10%; z-index: 2; }
-    .chart-item:nth-child(3) { top: calc(var(--chart-step)*2);  left: 20%; z-index: 1; }
-
-    .hero-donut {
-      margin-top: var(--donut-gap);
-      display: flex;
-      justify-content: flex-start;
-    }
-    .hero-donut img {
-      width: var(--donut-w);
-      max-width: var(--donut-max-w);
-      height: auto;
-    }
-
-    /* Centered CTA below both columns */
-    .hero-cta-wrap {
-      text-align: center;
-      max-width: var(--max-w);
-      margin: var(--hero-cta-gap) auto 0;
-    }
     .hero-cta {
       display: inline-block;
+      margin-top: var(--hero-cta-gap);
       background: var(--orange);
       color: var(--white);
       font-weight: 500;
@@ -493,18 +401,22 @@ import GoogleTag from '../components/GoogleTag.astro';
 
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 768px) {
-      .hero-grid, .about-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
       .services-grid { grid-template-columns: 1fr; }
-      .hero { padding: 2.5rem 1.25rem 2rem; }
       section { padding: 3.5rem 1.25rem; }
       nav { padding: 0 1.25rem; }
-      .chart-stack { height: 260px; }
-      .chart-item { width: 80%; }
-      .chart-item:nth-child(2) { top: 48px; left: 8%; }
-      .chart-item:nth-child(3) { top: 96px; left: 16%; }
+    }
+
+    /* Short laptop screens: tighten vertical rhythm so the CTA
+       stays visible without scrolling (see viewport test note below). */
+    @media (max-height: 700px) {
+      :root {
+        --hero-pad-top:    1.25rem;
+        --hero-pad-bottom: 1.25rem;
+        --hero-headline-gap: 0.9rem;
+        --hero-cta-gap: 1rem;
+      }
+      .hero-body { font-size: 0.95rem; line-height: 1.55; }
     }
   </style>
 </head>
@@ -520,48 +432,19 @@ import GoogleTag from '../components/GoogleTag.astro';
 
   <!-- ── Hero ── -->
   <section class="hero" aria-label="Hero">
+    <div class="hero-glow" aria-hidden="true"></div>
 
-    <!-- Centered headline -->
-    <div class="hero-headline-wrap">
+    <div class="hero-inner">
       <h1 class="hero-headline">
         High-impact, customized analytics
         <em>for busy e-preneurs.</em>
       </h1>
-    </div>
 
-    <!-- Two columns -->
-    <div class="hero-grid">
-
-      <!-- Left: intro blurb -->
-      <div class="hero-left">
+      <div class="hero-body">
         <p>You've already got a full plate as an on-line entrepreneur. Delegate the analytics to me and refocus on what you enjoy. I'll equip you with high-value insights you can use to make data-driven decisions about your content, strategies, and campaigns.</p>
-        <div class="hero-decor" aria-hidden="true">• • •</div>
         <p>Whether you're interested in user engagement, conversion rates, or advanced analyses such as customer segmentation and clustering, I've got you covered.</p>
-        <div class="hero-decor hero-decor-wave" aria-hidden="true">～</div>
       </div>
 
-      <!-- Right: diagonal charts with donut vertically centered beside them -->
-      <div class="hero-right">
-        <div class="chart-stack">
-          <div class="chart-item">
-            <img src="/example-2.png" alt="Active, scrolled and engaged pages" />
-          </div>
-          <div class="chart-item">
-            <img src="/example-1.png" alt="New users over time by first user source" />
-          </div>
-          <div class="chart-item">
-            <img src="/example-3.png" alt="Users by session source % change from prior period" />
-          </div>
-        </div>
-        <div class="hero-donut">
-          <img src="/Decor_donut.png" alt="" />
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Centered CTA -->
-    <div class="hero-cta-wrap">
       <a href="#contact" class="hero-cta">Get in touch</a>
     </div>
 
