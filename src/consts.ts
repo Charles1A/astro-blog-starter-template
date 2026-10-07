@@ -1,5 +1,6 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+// Site-wide text used in several places. Edit here and it updates everywhere.
+// SITE_TITLE appears in the blog header (Header.astro).
+// SITE_DESCRIPTION appears in the blog page's search/social metadata and the RSS feed.
 
-export const SITE_TITLE = "Firespark Analytics Blog";
-export const SITE_DESCRIPTION = "High-touch analytics services for e-preneurs";
+export const SITE_TITLE = "Fire Spark Analytics Blog";
+export const SITE_DESCRIPTION = "Customized analytics for busy e-preneurs.";
