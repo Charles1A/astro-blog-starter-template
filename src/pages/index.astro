@@ -1,6 +1,7 @@
 ---
 // src/pages/index.astro
 // Fire Spark Analytics — Homepage
+import GoogleTag from '../components/GoogleTag.astro';
 ---
 
 <!DOCTYPE html>
@@ -9,15 +10,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9RTQEYZZK"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-Q9RTQEYZZK');
-  </script>
+  <GoogleTag />
 
   <title>Fire Spark Analytics — Customized Analytics for Busy E-preneurs</title>
   <meta name="description" content="Customized analytics for busy e-preneurs. Delegate the analytics to Charles Ashton and refocus on what you enjoy." />
